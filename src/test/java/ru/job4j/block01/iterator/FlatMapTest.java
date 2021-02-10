@@ -3,9 +3,8 @@ package ru.job4j.block01.iterator;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
+
+import java.util.*;
 
 public class FlatMapTest {
     @Test
