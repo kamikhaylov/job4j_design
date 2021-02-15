@@ -40,10 +40,8 @@ public class SimpleArrayTest {
         Integer[] rsl = new Integer[]{
                 simpleArray.get(0),
                 simpleArray.get(1),
-                simpleArray.get(2),
-                simpleArray.get(3),
-                simpleArray.get(4)};
-        Integer[] expected = {1, 3, 4, null, null};
+                simpleArray.get(2),};
+        Integer[] expected = {1, 3, 4};
         assertThat(rsl, is(expected));
     }
 
