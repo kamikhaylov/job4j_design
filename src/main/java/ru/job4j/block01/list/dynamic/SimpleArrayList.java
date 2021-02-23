@@ -25,9 +25,7 @@ public class SimpleArrayList<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (indexContainer == container.length) {
-            container = grow();
-        }
+        checkSize();
         container[indexContainer++] = model;
         modCount++;
     }
@@ -59,6 +57,12 @@ public class SimpleArrayList<T> implements Iterable<T> {
 
     private void checkIndex(int index) {
         Objects.checkIndex(index, indexContainer);
+    }
+
+    private void checkSize() {
+        if (indexContainer == container.length) {
+            container = grow();
+        }
     }
 
     private T[] grow() {
