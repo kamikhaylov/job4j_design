@@ -19,29 +19,15 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void whenAddThenGetTwo() {
-        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
-        simpleLinkedList.add(1);
-        simpleLinkedList.add(2);
-        simpleLinkedList.add(3);
-        simpleLinkedList.add(4);
-        simpleLinkedList.add(5);
-        assertThat(simpleLinkedList.get(3), is(4));
-    }
-
-    @Test
     public void whenAddThenIt() {
         SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.add(1);
         simpleLinkedList.add(2);
-        simpleLinkedList.add(3);
         Iterator<Integer> iterator = simpleLinkedList.iterator();
         assertThat(iterator.hasNext(), is(true));
         assertThat(iterator.next(), is(1));
         assertThat(iterator.hasNext(), is(true));
         assertThat(iterator.next(), is(2));
-        assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next(), is(3));
         assertThat(iterator.hasNext(), is(false));
     }
 
