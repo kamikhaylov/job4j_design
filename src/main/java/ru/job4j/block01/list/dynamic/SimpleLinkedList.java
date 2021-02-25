@@ -54,7 +54,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         Iterator<T> it = new Iterator<T>() {
-            private int point = 0;
+            private Node<T> point = first;
             private int expectedModCount = modCount;
 
             @Override
@@ -62,7 +62,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return point < size;
+                return point != null;
             }
 
             @Override
@@ -70,7 +70,9 @@ public class SimpleLinkedList<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(point++);
+                T element = point.item;
+                point = point.next;
+                return element;
             }
         };
         return it;
