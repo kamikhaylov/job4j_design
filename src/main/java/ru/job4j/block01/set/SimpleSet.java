@@ -3,6 +3,7 @@ package ru.job4j.block01.set;
 import ru.job4j.block01.list.dynamic.SimpleArrayList;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Iterable<T> {
     private SimpleArrayList<T> array;
@@ -12,16 +13,20 @@ public class SimpleSet<T> implements Iterable<T> {
     }
     
     public void add(T model) {
-        boolean duplicate = false;
+        if (!duplicate(model)) {
+            array.add(model);
+        }
+    }
+
+    public boolean duplicate(T model) {
+        boolean rsl = false;
         for (T t : array) {
-            if (model.equals(t)) {
-                duplicate = true;
+            if (Objects.equals(model, t)) {
+                rsl = true;
                 break;
             }
         }
-        if (!duplicate) {
-            array.add(model);
-        }
+        return rsl;
     }
 
     @Override
