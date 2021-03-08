@@ -8,14 +8,13 @@ public class Main {
     public static void main(String[] args) {
         User user1 = new User("Name", 1, new GregorianCalendar(1990, 1, 1));
         User user2 = new User("Name", 1, new GregorianCalendar(1990, 1, 1));
-        User user3 = new User("Name1", 12, new GregorianCalendar(1990, 1, 1));
         System.out.println(user1.hashCode());
         System.out.println(user2.hashCode());
-        System.out.println(user3.hashCode());
         Map<User, Object> map = new HashMap<>();
         map.put(user1, new Object());
         map.put(user2, new Object());
-        map.put(user3, new Object());
-        System.out.println(map);
+        for (User user : map.keySet()) {
+            System.out.println(user + " = " + map.get(user));
+        }
     }
 }
