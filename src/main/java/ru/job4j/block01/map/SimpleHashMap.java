@@ -41,10 +41,10 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     public boolean insert(K key, V value) {
         int hash = hash(key);
-        int i = (n - 1) & hash;
-        if (checkIndexNode(i)) {
+        if (checkIndexNode(hash)) {
             checkSizeTable();
-            table[i] = new Node<>(hash, key, value);
+            hash = hash(key);
+            table[hash] = new Node<>(hash, key, value);
             size++;
             modCount++;
             return true;
@@ -54,15 +54,13 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     public V get(K key) {
         int hash = hash(key);
-        int i = (n - 1) & hash;
-        return checkIndexNode(i) ? null : table[i].value;
+        return !checkIndexNode(hash) && Objects.equals(key, table[hash].key) ? table[hash].value : null;
     }
 
     public boolean delete(K key) {
         int hash = hash(key);
-        int i = (n - 1) & hash;
-        if (!checkIndexNode(i) && Objects.equals(key, table[i].key)) {
-            table[i] = null;
+        if (!checkIndexNode(hash) && Objects.equals(key, table[hash].key)) {
+            table[hash] = null;
             size--;
             modCount++;
             return true;
@@ -84,7 +82,10 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
         Node<K, V>[] newTable = new Node[n *= 2];
         int i = 0;
         for (Node<K, V> t : table) {
-            newTable[i++] = t;
+            if (t != null) {
+                int hash = hash(t.key);
+                newTable[hash] = new Node<>(hash, t.key, t.value);
+            }
         }
         return newTable;
     }
