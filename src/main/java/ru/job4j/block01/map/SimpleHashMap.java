@@ -10,9 +10,9 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     private int modCount;
 
     static class Node<K, V> {
-        final int hash;
-        final K key;
-        V value;
+        private final int hash;
+        private final K key;
+        private V value;
 
         public Node(int hash, K key, V value) {
             this.hash = hash;
@@ -54,7 +54,8 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     public V get(K key) {
         int hash = hash(key);
-        return !checkIndexNode(hash) && Objects.equals(key, table[hash].key) ? table[hash].value : null;
+        return !checkIndexNode(hash)
+                && Objects.equals(key, table[hash].key) ? table[hash].value : null;
     }
 
     public boolean delete(K key) {
@@ -79,8 +80,8 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     private Node<K, V>[] grow() {
-        Node<K, V>[] newTable = new Node[n *= 2];
-        int i = 0;
+        n *= 2;
+        Node<K, V>[] newTable = new Node[n];
         for (Node<K, V> t : table) {
             if (t != null) {
                 int hash = hash(t.key);
@@ -92,7 +93,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     @Override
     public Iterator<K> iterator() {
-        Iterator<K> it = new Iterator<K>() {
+        Iterator<K> it = new Iterator<>() {
             private int point = 0;
             private int temp = 0;
             private int expectedModCount = modCount;
