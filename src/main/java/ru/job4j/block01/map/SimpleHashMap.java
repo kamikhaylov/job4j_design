@@ -6,13 +6,13 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     private Node<K, V>[] table;
     private int size;
     private int n;
-    private float loadFactor;
+    private final float loadFactor;
     private int modCount;
 
     static class Node<K, V> {
         private final int hash;
         private final K key;
-        private V value;
+        private final V value;
 
         public Node(int hash, K key, V value) {
             this.hash = hash;
@@ -26,6 +26,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public SimpleHashMap() {
         this.n = 16;
         this.table = new Node[n];
@@ -34,7 +35,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
         this.modCount = 0;
     }
 
-    private final int hash(Object key) {
+    private int hash(Object key) {
         int h = key.hashCode();
         return (n - 1) & (h ^ (h >>> 16));
     }
@@ -79,6 +80,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private Node<K, V>[] grow() {
         n *= 2;
         Node<K, V>[] newTable = new Node[n];
@@ -93,10 +95,10 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     @Override
     public Iterator<K> iterator() {
-        Iterator<K> it = new Iterator<>() {
+         Iterator<K> iterator = new Iterator<>() {
             private int point = 0;
             private int temp = 0;
-            private int expectedModCount = modCount;
+            private final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
@@ -122,6 +124,6 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
                 return null;
             }
         };
-        return it;
+        return iterator;
     }
 }

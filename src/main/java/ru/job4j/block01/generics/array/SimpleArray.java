@@ -9,6 +9,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private int size;
     private int indexArray = 0;
 
+    @SuppressWarnings("unchecked")
     public SimpleArray(int size) {
         this.array = (T[]) new Object[size];
         this.size = size;

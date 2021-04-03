@@ -8,6 +8,7 @@ public class SimpleArrayList<T> implements Iterable<T> {
     private int indexContainer;
     private int modCount;
 
+    @SuppressWarnings("unchecked")
     public SimpleArrayList() {
         this.size = 10;
         this.modCount = 0;
