@@ -25,4 +25,6 @@ public interface Tree<E> {
             return children;
         }
     }
+
+    boolean isBinary();
 }
