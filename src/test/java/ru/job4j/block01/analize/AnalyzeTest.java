@@ -94,4 +94,20 @@ public class AnalyzeTest {
         assertThat(rsl.getChanged(), is(expected.getChanged()));
         assertThat(rsl.getDeleted(), is(expected.getDeleted()));
     }
+
+    @Test
+    public void whenAddedAllNew() {
+        Analyze analyze = new Analyze();
+        ArrayList<User> previous = new ArrayList<>();
+        ArrayList<User> current = new ArrayList<>();
+        previous.add(new User(0, "Alex"));
+        previous.add(new User(1, "Dick"));
+        previous.add(new User(2, "Bob"));
+        current.add(new User(3, "Max"));
+        current.add(new User(4, "Brain"));
+        current.add(new User(5, "Felix"));
+        Info rsl = analyze.diff(previous, current);
+        Info expected = new Info(3, 0, 3);
+        assertThat(rsl.getAdded(), is(expected.getAdded()));
+    }
 }
