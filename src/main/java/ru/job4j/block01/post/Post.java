@@ -82,7 +82,7 @@ public class Post {
     private void addUniqueUsers() {
         for (String post : mapMails.keySet()) {
             String postAdd = mapMails.get(post);
-            if (!rsl.containsKey(mapMails.get(post))) {
+            if (!rsl.containsKey(postAdd)) {
                 rsl.put(postAdd, new HashSet<>());
             }
             rsl.get(postAdd).add(post);
