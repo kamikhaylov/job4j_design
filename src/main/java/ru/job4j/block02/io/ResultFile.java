@@ -7,7 +7,7 @@ public class ResultFile {
         Matrix matrix = new Matrix();
         int[][] table = matrix.multiple(5);
         String text = matrix.matrixToString(table);
-        try (FileOutputStream out = new FileOutputStream("resultMatrix.txt")) {
+        try (FileOutputStream out = new FileOutputStream("data//resultMatrix.txt")) {
             out.write(text.getBytes());
         } catch (Exception e) {
             e.printStackTrace();
