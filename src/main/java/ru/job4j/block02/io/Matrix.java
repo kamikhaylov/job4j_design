@@ -18,7 +18,7 @@ public class Matrix {
                 rsl = anInt != ints[ints.length - 1] ? rsl + anInt + " " : rsl + anInt;
             }
             if (ints != table[table.length - 1]) {
-                rsl += "\n";
+                rsl += System.lineSeparator();
             }
         }
         return rsl;
