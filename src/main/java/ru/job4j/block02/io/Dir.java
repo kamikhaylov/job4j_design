@@ -1,6 +1,7 @@
 package ru.job4j.block02.io;
 
 import java.io.File;
+import java.util.Objects;
 
 public class Dir {
     public static void main(String[] args) {
@@ -15,12 +16,13 @@ public class Dir {
                     String.format("Not directory %s", file.getAbsoluteFile())
             );
         }
-        System.out.println(String.format("size : %s", file.getTotalSpace()));
-        for (File subfile : file.listFiles()) {
+        System.out.printf("size : %s%n", file.getTotalSpace());
+        for (File subfile : Objects.requireNonNull(file.listFiles())) {
             String[] arr = subfile.getAbsoluteFile().toString().split("/");
             System.out.println(arr[arr.length - 1]
                     + " - "
-                    + subfile.getAbsoluteFile().length());
+                    + subfile.getAbsoluteFile().length()
+            );
         }
     }
 }
