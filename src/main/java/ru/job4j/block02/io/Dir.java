@@ -18,8 +18,7 @@ public class Dir {
         }
         System.out.printf("size : %s%n", file.getTotalSpace());
         for (File subfile : Objects.requireNonNull(file.listFiles())) {
-            String[] arr = subfile.getAbsoluteFile().toString().split("/");
-            System.out.println(arr[arr.length - 1]
+            System.out.println(subfile.getName()
                     + " - "
                     + subfile.getAbsoluteFile().length()
             );
