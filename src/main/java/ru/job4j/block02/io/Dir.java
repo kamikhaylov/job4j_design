@@ -21,7 +21,7 @@ public class Dir {
         }
         System.out.printf("size : %s%n", file.getTotalSpace());
         for (File subfile : Objects.requireNonNull(file.listFiles())) {
-            if (subfile.getName().contains(args[1])) {
+            if (subfile.getName().endsWith(args[1])) {
                 System.out.println(subfile.getName()
                         + " - "
                         + subfile.getAbsoluteFile().length()
