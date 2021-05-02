@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleChat {
+    private static final String OUT = "закончить";
+    private static final String STOP = "стоп";
+    private static final String CONTINUE = "продолжить";
     private final String path;
     private final String botAnswers;
     private final List<String> messagesBot;
     private boolean enableBot;
     private final Charset charset;
-    private static final String OUT = "закончить";
-    private static final String STOP = "стоп";
-    private static final String CONTINUE = "продолжить";
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
