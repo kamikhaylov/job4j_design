@@ -13,6 +13,7 @@ public class ConsoleChat {
     private final String path;
     private final String botAnswers;
     private final List<String> messagesBot;
+    private List<String> messagesAll;
     private boolean enableBot;
     private final Charset charset;
 
@@ -20,6 +21,7 @@ public class ConsoleChat {
         this.path = path;
         this.botAnswers = botAnswers;
         this.messagesBot = new ArrayList<>();
+        this.messagesAll = new ArrayList<>();
         this.enableBot = true;
         this.charset = StandardCharsets.UTF_8;
     }
@@ -30,16 +32,19 @@ public class ConsoleChat {
                     new FileWriter(path, charset, true))) {
                 getMessagesListBot();
                 String messageUser = in.readLine();
-                out.write(messageUser + System.lineSeparator());
+                messagesAll.add(messageUser + System.lineSeparator());
                 while (checkOut(messageUser)) {
                     checkEnableBot(messageUser);
                     if (enableBot) {
                         String messageBot = getRandomMessageBot();
                         System.out.println(messageBot);
-                        out.write(messageBot + System.lineSeparator());
+                        messagesAll.add(messageBot + System.lineSeparator());
                     }
                     messageUser = in.readLine();
-                    out.write(messageUser + System.lineSeparator());
+                    messagesAll.add(messageUser + System.lineSeparator());
+                }
+                for (String msg : messagesAll) {
+                    out.write(msg);
                 }
             }
         } catch (Exception e) {
