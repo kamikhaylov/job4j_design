@@ -50,23 +50,26 @@ public class EchoServer {
         if (msg.contains("/?msg=" + EXIT)) {
             status = false;
         }
-        msgServerExit = "HTTP/1.0 200 OK\r" + System.lineSeparator()
-                    + "Content-type text/html\r" + System.lineSeparator()
+        msgServerExit = "HTTP/1.0 200 OK"
                     + System.lineSeparator()
-                    + "Server Exit\r" + System.lineSeparator();
+                    + System.lineSeparator()
+                    + "Server Exit"
+                    + System.lineSeparator();
     }
 
     private static void outMsg(String msg) {
         if (msg.contains(HELLO)) {
-            msgServer = "HTTP/1.0 200 OK\r" + System.lineSeparator()
-                    + "Content-type text/html\r" + System.lineSeparator()
+            msgServer = "HTTP/1.0 200 OK"
                     + System.lineSeparator()
-                    + "Hello, dear friend.\r"  + System.lineSeparator();
+                    + System.lineSeparator()
+                    + "Hello, dear friend."
+                    + System.lineSeparator();
         } else {
-            msgServer = "HTTP/1.0 200 OK\r" + System.lineSeparator()
-                    + "Content-type text/html\r" + System.lineSeparator()
+            msgServer = "HTTP/1.0 200 OK"
                     + System.lineSeparator()
-                    + "What?\r" + System.lineSeparator();
+                    + System.lineSeparator()
+                    + "What?"
+                    + System.lineSeparator();
         }
     }
 }
