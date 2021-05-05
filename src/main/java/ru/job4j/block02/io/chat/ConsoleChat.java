@@ -13,7 +13,7 @@ public class ConsoleChat {
     private final String path;
     private final String botAnswers;
     private final List<String> messagesBot;
-    private List<String> messagesAll;
+    private  final List<String> messagesAll;
     private boolean enableBot;
     private final Charset charset;
 
@@ -27,27 +27,37 @@ public class ConsoleChat {
     }
 
     public void run() {
+        chatWork();
+        outLog(path, messagesAll);
+    }
+
+    private void chatWork() {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {
-            try (BufferedWriter out = new BufferedWriter(
-                    new FileWriter(path, charset, true))) {
-                getMessagesListBot();
-                String messageUser = in.readLine();
+            getMessagesListBot();
+            String messageUser = in.readLine();
+            messagesAll.add(messageUser + System.lineSeparator());
+            while (checkOut(messageUser)) {
+                checkEnableBot(messageUser);
+                if (enableBot) {
+                    String messageBot = getRandomMessageBot();
+                    System.out.println(messageBot);
+                    messagesAll.add(messageBot + System.lineSeparator());
+                }
+                messageUser = in.readLine();
                 messagesAll.add(messageUser + System.lineSeparator());
-                while (checkOut(messageUser)) {
-                    checkEnableBot(messageUser);
-                    if (enableBot) {
-                        String messageBot = getRandomMessageBot();
-                        System.out.println(messageBot);
-                        messagesAll.add(messageBot + System.lineSeparator());
-                    }
-                    messageUser = in.readLine();
-                    messagesAll.add(messageUser + System.lineSeparator());
-                }
-                for (String msg : messagesAll) {
-                    out.write(msg);
-                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void outLog(String path, List<String> messages) {
+        try (BufferedWriter out = new BufferedWriter(
+                new FileWriter(path, charset, true))) {
+            for (String msg : messagesAll) {
+                out.write(msg);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
