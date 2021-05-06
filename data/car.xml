@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car sale="true" year="2017" name="Car">
+    <vin number="XXXXXXXXX"/>
+    <servicees>
+        <service>10-10-2017</service>
+        <service>15-10-2018</service>
+        <service>12-10-2019</service>
+    </servicees>
+</car>
