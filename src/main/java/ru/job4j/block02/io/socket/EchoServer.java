@@ -9,6 +9,12 @@ import org.slf4j.LoggerFactory;
 public class EchoServer {
     private static final String EXIT = "Exit";
     private static final String HELLO = "Hello";
+    private static final String WHAT = "WHAT";
+    private static final String NOT_MESSAGE = "GET / HTTP/1.1";
+    private static final String START_MESSAGE = "HTTP/1.0 200 OK"
+                                                + System.lineSeparator()
+                                                + System.lineSeparator();
+    private static final String IN_MSG = "/?msg=";
     private static boolean status = true;
     private static String msgServer = "";
     private static String msgServerExit = "";
@@ -23,9 +29,10 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     String str = in.readLine();
                     while (!str.isEmpty()) {
-                        System.out.println(str);
-                        if (str.contains("/?msg=")) {
+                        if (str.contains(IN_MSG)) {
                             outMsg(str);
+                        } else if (str.contains(NOT_MESSAGE)) {
+                            notMsg(str);
                         }
                         checkStatus(str);
                         str = in.readLine();
@@ -47,29 +54,27 @@ public class EchoServer {
     }
 
     private static void checkStatus(String msg) {
-        if (msg.contains("/?msg=" + EXIT)) {
+        if (msg.contains(EXIT)) {
             status = false;
-        }
-        msgServerExit = "HTTP/1.0 200 OK"
-                    + System.lineSeparator()
-                    + System.lineSeparator()
+            msgServerExit = START_MESSAGE
                     + "Server Exit"
                     + System.lineSeparator();
+        }
     }
 
     private static void outMsg(String msg) {
         if (msg.contains(HELLO)) {
-            msgServer = "HTTP/1.0 200 OK"
-                    + System.lineSeparator()
-                    + System.lineSeparator()
+            msgServer = START_MESSAGE
                     + "Hello, dear friend."
                     + System.lineSeparator();
         } else {
-            msgServer = "HTTP/1.0 200 OK"
-                    + System.lineSeparator()
-                    + System.lineSeparator()
-                    + "What?"
-                    + System.lineSeparator();
+            msgServer = START_MESSAGE
+                + "What?"
+                + System.lineSeparator();
         }
+    }
+
+    private static void notMsg(String msg) {
+        msgServer = START_MESSAGE;
     }
 }
