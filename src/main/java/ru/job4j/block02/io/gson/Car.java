@@ -1,16 +1,28 @@
 package ru.job4j.block02.io.gson;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import java.io.StringReader;
 import java.util.Arrays;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
 
+@XmlRootElement(name = "car")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Car {
-    private final boolean sale;
-    private final int year;
-    private final String name;
-    private final VinNumber vin;
-    private final String[] service;
+
+    @XmlAttribute
+    private boolean sale;
+    private int year;
+    private String name;
+    private VinNumber vin;
+    @XmlElementWrapper(name = "services")
+    @XmlElement(name = "service")
+    private String[] service;
+
+    public Car() {
+    }
 
     public Car(boolean sale, int year, String name, VinNumber vin, String[] service) {
         this.sale = sale;
@@ -31,7 +43,7 @@ public class Car {
                 + '}';
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         final Car car = new Car(
                 true,
                 2017,
@@ -42,29 +54,20 @@ public class Car {
                         "15-10-2018",
                         "12-10-2019"
         });
-        System.out.println(car);
 
-        /* Преобразуем объект person в json-строку и обратно. */
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(car));
-        System.out.println(gson.fromJson(gson.toJson(car), Car.class));
-
-        /* Модифицируем json-строку и обратно. */
-        final String carJson =
-                "{"
-                    + "\"sale\":true,"
-                    + "\"year\":2019,"
-                    + "\"name\":BigCar,"
-                    + "\"vin\":"
-                        + "{"
-                            + "\"number\":\"ZZZZZZZZ\""
-                        + "},"
-                    + "\"service\":"
-                        + "[\"02-12-2019\",\"20-11-2020\"]"
-                + "}";
-        System.out.println(carJson);
-        final Car carMod = gson.fromJson(carJson, Car.class);
-        System.out.println(carMod);
-        System.out.println(gson.toJson(carMod));
+        JAXBContext context = JAXBContext.newInstance(Car.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        String xml = "";
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(car, writer);
+            xml = writer.getBuffer().toString();
+            System.out.println(xml);
+        }
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        try (StringReader reader = new StringReader(xml)) {
+            Car result = (Car) unmarshaller.unmarshal(reader);
+            System.out.println(result);
+        }
     }
 }
