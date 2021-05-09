@@ -1,24 +1,17 @@
 package ru.job4j.block02.io.gson;
 
-import java.io.StringReader;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.*;
-import java.io.StringWriter;
+import java.util.List;
 
-@XmlRootElement(name = "car")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Car {
-
-    @XmlAttribute
     private boolean sale;
     private int year;
     private String name;
     private VinNumber vin;
-    @XmlElementWrapper(name = "services")
-    @XmlElement(name = "service")
     private String[] service;
 
     public Car() {
@@ -32,6 +25,26 @@ public class Car {
         this.service = service;
     }
 
+    public boolean isSale() {
+        return sale;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public VinNumber getVin() {
+        return vin;
+    }
+
+    public String[] getService() {
+        return service;
+    }
+
     @Override
     public String toString() {
         return "Car{"
@@ -43,7 +56,13 @@ public class Car {
                 + '}';
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        JSONObject jsonVin = new JSONObject("{\"number\":\"ZZZZZZZZ\"}");
+        List<String> list = new ArrayList<>();
+        list.add("10-10-2017");
+        list.add("15-10-2018");
+        list.add("12-10-2019");
+        JSONArray jsonServices = new JSONArray(list);
         final Car car = new Car(
                 true,
                 2017,
@@ -53,21 +72,18 @@ public class Car {
                         "10-10-2017",
                         "15-10-2018",
                         "12-10-2019"
-        });
+                });
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("sale", car.isSale());
+        jsonObject.put("year", car.getYear());
+        jsonObject.put("name", car.getName());
+        jsonObject.put("vin", jsonVin);
+        jsonObject.put("service", jsonServices);
 
-        JAXBContext context = JAXBContext.newInstance(Car.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String xml = "";
-        try (StringWriter writer = new StringWriter()) {
-            marshaller.marshal(car, writer);
-            xml = writer.getBuffer().toString();
-            System.out.println(xml);
-        }
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(xml)) {
-            Car result = (Car) unmarshaller.unmarshal(reader);
-            System.out.println(result);
-        }
+        /* Выведем результат в консоль */
+        System.out.println(jsonObject);
+
+        /* Преобразуем объект person в json-строку */
+        System.out.println(new JSONObject(car));
     }
 }
