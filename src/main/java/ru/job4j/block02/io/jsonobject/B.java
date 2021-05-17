@@ -1,4 +1,4 @@
-package ru.job4j.block02.io.JsonObject;
+package ru.job4j.block02.io.jsonobject;
 
 import org.json.JSONObject;
 
