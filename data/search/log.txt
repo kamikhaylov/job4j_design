@@ -1,0 +1,5 @@
+/Users/konstantin/Desktop/MyMac/JAVAWORK/job4j/projects/job4j_design/target/classes/log4j.properties
+/Users/konstantin/Desktop/MyMac/JAVAWORK/job4j/projects/job4j_design/data/chat/log.txt
+/Users/konstantin/Desktop/MyMac/JAVAWORK/job4j/projects/job4j_design/data/search/log.txt
+/Users/konstantin/Desktop/MyMac/JAVAWORK/job4j/projects/job4j_design/data/log.txt
+/Users/konstantin/Desktop/MyMac/JAVAWORK/job4j/projects/job4j_design/src/main/resources/log4j.properties
