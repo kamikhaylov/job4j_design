@@ -7,7 +7,6 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         ValidatorParameters.checkArg(args);
-        ValidatorParameters.checkArg(args);
         Find find = new Find(args);
         find.run();
     }

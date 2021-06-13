@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 public class FindMask implements FindStrategy {
     @Override
     public Predicate<Path> getPredicate(String name) {
-        return p -> p.toFile().getName().contains(name.substring(name.indexOf("*") + 1));
+        String nameFind = name
+                .replace("*", ".+")
+                .replace("?", ".{1}");
+        return new FindRegex().getPredicate(nameFind);
     }
 }
