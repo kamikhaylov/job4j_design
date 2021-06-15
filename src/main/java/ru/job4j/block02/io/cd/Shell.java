@@ -24,8 +24,8 @@ public class Shell {
     }
 
     public String pwd() {
-        while (!list.isEmpty()) {
-            str.add(list.pollFirst());
+        for (String s : list) {
+            str.add(s);
         }
         return str.toString();
     }
