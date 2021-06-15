@@ -1,0 +1,1 @@
+insert into cars(name, model, speed) values('Car2', 'Turbo', '230');
