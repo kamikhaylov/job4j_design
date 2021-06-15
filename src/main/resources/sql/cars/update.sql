@@ -1,0 +1,1 @@
+update cars set name = 'Bad';
