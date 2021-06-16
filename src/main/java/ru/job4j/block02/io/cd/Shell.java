@@ -5,12 +5,10 @@ import java.util.StringJoiner;
 
 public class Shell {
     private LinkedList<String> list;
-    private StringJoiner str;
     private String[] arr;
 
     public Shell() {
         this.list = new LinkedList<>();
-        this.str = new StringJoiner("/", "/", "");
     }
 
     public void cd(String path) {
@@ -24,6 +22,7 @@ public class Shell {
     }
 
     public String pwd() {
+        StringJoiner str = new StringJoiner("/", "/", "");
         for (String s : list) {
             str.add(s);
         }
