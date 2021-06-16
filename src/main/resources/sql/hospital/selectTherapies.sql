@@ -1,0 +1,1 @@
+select * from therapist where id in (select id from patients);
