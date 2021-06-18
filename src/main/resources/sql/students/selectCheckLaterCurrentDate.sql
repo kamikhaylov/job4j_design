@@ -1,0 +1,1 @@
+select current_date > '10.09.2020';

@@ -1,0 +1,1 @@
+select * from students order by speciality desc;
