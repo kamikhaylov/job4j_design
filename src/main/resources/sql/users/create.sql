@@ -50,21 +50,3 @@ create table attachs (
 	name varchar(2000),
 	item_id int references item(id)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
