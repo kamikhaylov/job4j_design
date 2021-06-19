@@ -1,0 +1,20 @@
+insert into type(name) values ('Laptop');
+insert into type(name) values ('PC');
+insert into type(name) values ('Monoblock');
+insert into type(name) values ('Tablet PC');
+insert into type(name) values ('Printer');
+
+insert into manufacturer(name, supply, type_id) values('Apple', '0001', 1);
+insert into manufacturer(name, supply, type_id) values('Apple', '0001', 3);
+insert into manufacturer(name, supply, type_id) values('Apple', '0002', 4);
+insert into manufacturer(name, supply, type_id) values('HP', '0200', 1);
+insert into manufacturer(name, supply, type_id) values('HP', '0201', 2);
+insert into manufacturer(name, supply, type_id) values('HP', '0201', 3);
+insert into manufacturer(name, supply, type_id) values('Dell', '0099', 1);
+insert into manufacturer(name, supply, type_id) values('Dell', '0099', 2);
+insert into manufacturer(name, supply, type_id) values('Dell', '0098', 3);
+insert into manufacturer(name, supply, type_id) values('Dell', '0098', 4);
+insert into manufacturer(name, supply, type_id) values('Xerox', '0005', 4);
+insert into manufacturer(name, supply, type_id) values('Lexmark', '0005', 4);
+insert into manufacturer(name, supply) values ('Noname', '2000');
+insert into manufacturer(name) values ('Noname');

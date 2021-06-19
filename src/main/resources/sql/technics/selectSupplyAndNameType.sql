@@ -1,0 +1,1 @@
+select m.supply, t.name from manufacturer as m join type as t on m.type_id = t.id;

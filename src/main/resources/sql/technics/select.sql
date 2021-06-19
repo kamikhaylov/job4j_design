@@ -1,0 +1,1 @@
+select m.supply as Партия, t.name as Тип from manufacturer as m join type as t on m.type_id = t.id;

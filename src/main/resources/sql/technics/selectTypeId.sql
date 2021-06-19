@@ -1,0 +1,1 @@
+select * from manufacturer join type t on manufacturer.type_id = t.id;
