@@ -1,0 +1,1 @@
+select avg(mark) from students_subjects;

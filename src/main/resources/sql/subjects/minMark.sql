@@ -1,0 +1,1 @@
+select min(mark) from students_subjects;
