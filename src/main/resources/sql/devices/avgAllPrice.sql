@@ -1,0 +1,1 @@
+select avg(price) as Средняя_цена_девайса from devices;
