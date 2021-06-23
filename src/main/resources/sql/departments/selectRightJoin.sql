@@ -1,0 +1,1 @@
+select * from departments d right join emploees e on e.departments_id = d.id;

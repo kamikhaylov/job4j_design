@@ -1,0 +1,1 @@
+select * from emploees e full join departments d on e.departments_id = d.id;
