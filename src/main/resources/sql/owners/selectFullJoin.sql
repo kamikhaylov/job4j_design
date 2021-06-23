@@ -1,0 +1,1 @@
+select * from devices d full join owners o on d.owner_id = o.id;

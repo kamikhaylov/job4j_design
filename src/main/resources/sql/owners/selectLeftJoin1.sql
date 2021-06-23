@@ -1,0 +1,1 @@
+select * from owners o left join devices d on o.id = d.owner_id;
