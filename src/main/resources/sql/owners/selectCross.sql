@@ -1,1 +1,0 @@
-select * from devices d cross join owners o;
