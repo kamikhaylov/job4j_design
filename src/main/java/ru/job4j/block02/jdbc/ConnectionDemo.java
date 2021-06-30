@@ -24,7 +24,8 @@ public class ConnectionDemo {
         }
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException,
+                                                IOException, SQLException {
         ConnectionDemo connectionDemo = new ConnectionDemo();
         ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("ru/job4j/block02/jdbc/app.properties")) {
