@@ -11,7 +11,7 @@ public class StatementDemo {
         return DriverManager.getConnection(url, login, password);
     }
 
-    public static String getTableScheme(Connection connection, String tableName) throws Exception{
+    public static String getTableScheme(Connection connection, String tableName) throws Exception {
         StringBuilder scheme = new StringBuilder();
         DatabaseMetaData metaData = connection.getMetaData();
         try (ResultSet columns = metaData.getColumns(null, null, tableName, null)) {

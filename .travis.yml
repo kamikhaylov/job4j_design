@@ -17,15 +17,8 @@ notifications:
     recipients:
       -konstantmik@yandex.ru
     on_success: never # default: change
-    on_failure: always # defa,ult: always
+    on_failure: always # default: always
 env:
   global:
     - CODECOV_TOKEN="b31a303b-7c3a-414b-97be-c2f30d1446aa"
-
-# Старт PostgreSQL
-services:
-  - postgresql
-
-# Создание database
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+tabase travis_ci_test;' -U postgres
