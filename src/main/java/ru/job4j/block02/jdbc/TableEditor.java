@@ -9,6 +9,11 @@ public class TableEditor implements AutoCloseable {
     private final Properties properties;
     private Connection connection;
 
+    public TableEditor(Properties properties) throws Exception {
+        this.properties = properties;
+        initConnection();
+    }
+
     public String getValue(String key) {
         return this.properties.getProperty(key);
     }
@@ -21,12 +26,7 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public TableEditor(Properties properties) throws SQLException, ClassNotFoundException, IOException {
-        this.properties = properties;
-        initConnection();
-    }
-
-    private void initConnection() throws SQLException, ClassNotFoundException, IOException {
+    private void initConnection() throws Exception {
         ClassLoader loader = TableEditor.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("ru/job4j/block02/jdbc/app.properties")) {
             load(io);
@@ -66,7 +66,9 @@ public class TableEditor implements AutoCloseable {
         );
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
+    public void renameColumn(String tableName,
+                             String columnName,
+                             String newColumnName) throws SQLException {
         executeSQL(
                 "alter table " + tableName + " "
                 + "rename column " + columnName + " to " + newColumnName
