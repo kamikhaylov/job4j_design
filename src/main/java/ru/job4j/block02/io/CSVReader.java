@@ -33,7 +33,7 @@ public class CSVReader {
         getArgsFilter(filter);
         if (out.equals("stdout")) {
             stdOut();
-        } else if (out.equals("file")) {
+        } else if (out.equals("path")) {
             fileOut();
         }
     }
