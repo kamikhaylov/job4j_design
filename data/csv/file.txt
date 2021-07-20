@@ -1,0 +1,1 @@
+name=Иван;age=27;birthDate=1;education=higher;children=not
