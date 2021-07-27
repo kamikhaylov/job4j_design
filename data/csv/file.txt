@@ -1,1 +1,3 @@
-name=Иван;age=27;birthDate=1;education=higher;children=not
+name;age;birthDate;education;children
+Иван;27;1;higher;not
+Петр;28;10;not;1
