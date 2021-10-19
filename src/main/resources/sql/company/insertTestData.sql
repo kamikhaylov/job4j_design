@@ -1,0 +1,16 @@
+INSERT INTO company(id, name) VALUES(1, 'Компания 1');
+INSERT INTO company(id, name) VALUES(2, 'Компания 2');
+INSERT INTO company(id, name) VALUES(3, 'Компания 3');
+INSERT INTO company(id, name) VALUES(4, 'Компания 4');
+INSERT INTO company(id, name) VALUES(5, 'Компания 5');
+INSERT INTO person(id, name, company_id) VALUES(1, 'Сотрудник 1', 1);
+INSERT INTO person(id, name, company_id) VALUES(2, 'Сотрудник 2', 1);
+INSERT INTO person(id, name, company_id) VALUES(3, 'Сотрудник 3', 2);
+INSERT INTO person(id, name, company_id) VALUES(4, 'Сотрудник 4', 2);
+INSERT INTO person(id, name, company_id) VALUES(5, 'Сотрудник 5', 2);
+INSERT INTO person(id, name, company_id) VALUES(6, 'Сотрудник 6', 3);
+INSERT INTO person(id, name, company_id) VALUES(7, 'Сотрудник 7', 4);
+INSERT INTO person(id, name, company_id) VALUES(8, 'Сотрудник 8', 5);
+INSERT INTO person(id, name, company_id) VALUES(9, 'Сотрудник 9', 5);
+INSERT INTO person(id, name, company_id) VALUES(10, 'Сотрудник 10', 5);
+INSERT INTO person(id, name, company_id) VALUES(11, 'Сотрудник 11', 5);
