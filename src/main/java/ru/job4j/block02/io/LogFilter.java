@@ -38,8 +38,8 @@ public class LogFilter {
     }
 
     public static void main(String[] args) {
-        List<String> log = filter("data//log.txt");
+        List<String> log = filter("data/log.txt");
         printLogConsole(log);
-        save(log, "data//404.txt");
+        save(log, "data/404.txt");
     }
 }
