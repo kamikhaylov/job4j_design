@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 
 public class GeneratorNameTest {
     @Test
-    public void produce() {
+    public void whenGeneratorTrue() {
         Generator generator = new GeneratorName();
         String template = "I am a ${name}, Who are ${subject}?";
         String expected = "I am a Konstantin, Who are you?";
@@ -19,7 +19,7 @@ public class GeneratorNameTest {
 
     @Ignore
     @Test(expected = NoSuchElementException.class)
-    public void notKeyInMap() {
+    public void whenNotKeyInMap() {
         Generator generator = new GeneratorName();
         String template = "I am a ${name}, Who are ${subject}?";
         String expected = "I am a Konstantin, Who are you?";
@@ -29,7 +29,7 @@ public class GeneratorNameTest {
 
     @Ignore
     @Test(expected = IllegalArgumentException.class)
-    public void extraKeyInMap() {
+    public void whenExtraKeyInMap() {
         Generator generator = new GeneratorName();
         String template = "I am a ${name}, Who are ${subject}?";
         String expected = "I am a Konstantin, Who are you?";
