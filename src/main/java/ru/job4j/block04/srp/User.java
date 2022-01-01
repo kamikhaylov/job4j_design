@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Authorize {
+    private static User user;
     private int id;
     private String login;
     private String mail;
 
-    public User(int id, String login, String mail) {
+    private User(int id, String login, String mail) {
         this.id = id;
         this.login = login;
         this.mail = mail;
+    }
+
+    public static User getInstance(int id, String login, String mail) {
+        if (user == null) {
+            user = new User(id, login, mail);
+        }
+        return user;
     }
 
     public int getId() {
