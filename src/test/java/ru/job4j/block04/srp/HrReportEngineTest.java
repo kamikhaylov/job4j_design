@@ -3,6 +3,11 @@ package ru.job4j.block04.srp;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+import ru.job4j.block04.srp.report.Employee;
+import ru.job4j.block04.srp.report.HrReportEngine;
+import ru.job4j.block04.srp.report.MemStore;
+import ru.job4j.block04.srp.report.Report;
+
 import java.util.Calendar;
 
 public class HrReportEngineTest {

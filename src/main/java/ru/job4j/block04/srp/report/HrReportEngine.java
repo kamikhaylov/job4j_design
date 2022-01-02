@@ -1,23 +1,24 @@
-package ru.job4j.block04.srp;
+package ru.job4j.block04.srp.report;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
-public class ReportEngine implements Report {
+public class HrReportEngine implements Report {
     private Store store;
 
-    public ReportEngine(Store store) {
+    public HrReportEngine(Store store) {
         this.store = store;
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-        text.append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator());
-        for (Employee employee : store.findBy(filter)) {
+        List<Employee> sortStore = store.findBy(filter);
+        sortStore.sort(Comparator.comparingDouble(Employee::getSalary).reversed());
+        text.append("Name; Salary;").append(System.lineSeparator());
+        for (Employee employee : sortStore) {
             text.append(employee.getName()).append(";")
-                    .append(employee.getHired()).append(";")
-                    .append(employee.getFired()).append(";")
                     .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());
         }

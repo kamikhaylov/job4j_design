@@ -1,4 +1,4 @@
-package ru.job4j.block04.srp;
+package ru.job4j.block04.srp.report;
 
 import java.util.Calendar;
 import java.util.Objects;
