@@ -19,7 +19,7 @@ public class BookkeepingReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary()).append(" + promotion").append(";")
+                .append(worker.getSalary() * 0.2).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }

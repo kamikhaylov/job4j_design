@@ -18,7 +18,7 @@ public class BookkeepingReportEngine implements Report {
             text.append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
-                    .append(employee.getSalary()).append(" + promotion").append(";")
+                    .append(employee.getSalary() * 0.2).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();
