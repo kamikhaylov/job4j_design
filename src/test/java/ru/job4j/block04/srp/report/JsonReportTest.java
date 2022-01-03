@@ -15,7 +15,8 @@ public class JsonReportTest {
         store.add(worker);
         Report jsonReport = new JsonReport(store);
         String expect =
-                "{"
+                "["
+                + "{"
                     + "\"name\":\"Ivan\","
                     + "\"hired\":"
                     + "{"
@@ -36,6 +37,7 @@ public class JsonReportTest {
                     + "},"
                     + "\"salary\":100.0"
                 + "}"
+                + "]"
                 + "\n";
         assertThat(jsonReport.generate(em -> true), is(expect));
     }
