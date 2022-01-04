@@ -19,7 +19,6 @@ public class JsonReport implements Report {
         final Gson gson = new GsonBuilder().create();
         text.append(gson.toJson(employees))
                 .append(System.lineSeparator());
-
         return text.toString();
     }
 }
