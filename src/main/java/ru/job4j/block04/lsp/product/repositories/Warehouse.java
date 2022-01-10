@@ -1,11 +1,10 @@
 package ru.job4j.block04.lsp.product.repositories;
 
 import ru.job4j.block04.lsp.product.Food;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Warehouse implements Repositories {
+public class Warehouse implements Repository {
     private List<Food> foods;
 
     public Warehouse() {
@@ -13,11 +12,16 @@ public class Warehouse implements Repositories {
     }
 
     @Override
-    public void add(Food food) {
-        foods.add(food);
+    public boolean add(Food food) {
+        return accept(food) && foods.add(food);
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        return getPercentLifeExpired(food) < 25;
     }
 
     public List<Food> findAll() {
-        return foods;
+        return (List) ((ArrayList<Food>) foods).clone();
     }
 }

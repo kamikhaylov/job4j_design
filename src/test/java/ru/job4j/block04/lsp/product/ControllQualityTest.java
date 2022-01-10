@@ -3,13 +3,22 @@ package ru.job4j.block04.lsp.product;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+import ru.job4j.block04.lsp.product.repositories.Shop;
+import ru.job4j.block04.lsp.product.repositories.Trash;
+import ru.job4j.block04.lsp.product.repositories.Warehouse;
 import java.util.Calendar;
 import java.util.List;
 
 public class ControllQualityTest {
     @Test
     public void thenAddInShop() {
-        ControllQuality controllQuality = new ControllQuality();
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
         Calendar expiryDate = Calendar.getInstance();
         Calendar createDate = Calendar.getInstance();
         expiryDate.set(expiryDate.get(Calendar.YEAR),
@@ -23,12 +32,18 @@ public class ControllQualityTest {
         Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
         List<Food> expected = List.of(milk);
         controllQuality.control(milk);
-        assertThat(controllQuality.getShop().findAll(), is(expected));
+        assertThat(shop.findAll(), is(expected));
     }
 
     @Test
     public void thenAddInWarehouse() {
-        ControllQuality controllQuality = new ControllQuality();
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
         Calendar expiryDate = Calendar.getInstance();
         Calendar createDate = Calendar.getInstance();
         expiryDate.set(expiryDate.get(Calendar.YEAR),
@@ -42,12 +57,18 @@ public class ControllQualityTest {
         Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
         List<Food> expected = List.of(milk);
         controllQuality.control(milk);
-        assertThat(controllQuality.getWarehouse().findAll(), is(expected));
+        assertThat(warehouse.findAll(), is(expected));
     }
 
     @Test
     public void thenAddInShopAndDiscount() {
-        ControllQuality controllQuality = new ControllQuality();
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
         Calendar expiryDate = Calendar.getInstance();
         Calendar createDate = Calendar.getInstance();
         expiryDate.set(expiryDate.get(Calendar.YEAR),
@@ -61,12 +82,18 @@ public class ControllQualityTest {
         Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
         List<Food> expected = List.of(milk);
         controllQuality.control(milk);
-        assertThat(controllQuality.getShop().findAll(), is(expected));
+        assertThat(shop.findAll(), is(expected));
     }
 
     @Test
     public void thenAddInShopAndDiscountWhenDiscount() {
-        ControllQuality controllQuality = new ControllQuality();
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
         Calendar expiryDate = Calendar.getInstance();
         Calendar createDate = Calendar.getInstance();
         expiryDate.set(expiryDate.get(Calendar.YEAR),
@@ -80,14 +107,20 @@ public class ControllQualityTest {
         Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
         int expected = milk.getPrice() - milk.getDiscount();
         controllQuality.control(milk);
-        List<Food> foodsShop = controllQuality.getShop().findAll();
+        List<Food> foodsShop = shop.findAll();
         Food food = foodsShop.get(0);
         assertThat(food.getPrice(), is(expected));
     }
 
     @Test
     public void thenAddInTrash() {
-        ControllQuality controllQuality = new ControllQuality();
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
         Calendar expiryDate = Calendar.getInstance();
         Calendar createDate = Calendar.getInstance();
         expiryDate.set(expiryDate.get(Calendar.YEAR),
@@ -101,6 +134,6 @@ public class ControllQualityTest {
         Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
         List<Food> expected = List.of(milk);
         controllQuality.control(milk);
-        assertThat(controllQuality.getTrash().findAll(), is(expected));
+        assertThat(trash.findAll(), is(expected));
     }
 }
