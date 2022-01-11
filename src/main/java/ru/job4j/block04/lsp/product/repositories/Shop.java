@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Shop implements Repository {
     private List<Food> foods;
+    private Food food;
 
     public Shop() {
         this.foods = new ArrayList<>();
@@ -13,23 +14,29 @@ public class Shop implements Repository {
 
     @Override
     public boolean add(Food food) {
-        return accept(food) && foods.add(applyDiscount(food));
+        return accept(food) && foods.add(this.food);
     }
 
     @Override
     public boolean accept(Food food) {
-        return getPercentLifeExpired(food) >= 25;
+        boolean rsl = false;
+        double percent = getPercentLifeExpired(food);
+        if (percent >= 25) {
+            this.food = food;
+            rsl = true;
+        }
+        if (75 <= percent && percent <= 100) {
+            this.food = applyDiscount(food);
+        }
+        return rsl;
     }
 
     public Food applyDiscount(Food food) {
-        double percent = getPercentLifeExpired(food);
-        if (75 <= percent && percent <= 100) {
-            food.setPrice(food.getPrice() - food.getDiscount());
-        }
+        food.setPrice(food.getPrice() - food.getDiscount());
         return food;
     }
 
     public List<Food> findAll() {
-        return (List) ((ArrayList<Food>) foods).clone();
+        return (List<Food>) ((ArrayList<Food>) foods).clone();
     }
 }

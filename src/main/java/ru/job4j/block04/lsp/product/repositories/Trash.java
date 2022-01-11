@@ -22,6 +22,6 @@ public class Trash implements Repository {
     }
 
     public List<Food> findAll() {
-        return (List) ((ArrayList<Food>) foods).clone();
+        return (List<Food>) ((ArrayList<Food>) foods).clone();
     }
 }
