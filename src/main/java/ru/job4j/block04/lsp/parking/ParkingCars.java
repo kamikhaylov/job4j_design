@@ -6,9 +6,7 @@ import java.util.List;
 public class ParkingCars implements Parking {
     private int placesCars;
     private int placesTracks;
-    private List<Car> cars;
-    private int occupiedPlacesCars;
-    private int occupiedPlacesTracks;
+    private List<Vehicle> cars;
 
     public ParkingCars(int placesCars, int placesTracks) {
         this.placesCars = placesCars;
@@ -17,64 +15,38 @@ public class ParkingCars implements Parking {
     }
 
     @Override
-    public boolean add(Car car) {
+    public boolean add(Vehicle vehicle) {
         boolean rsl = false;
-        if (car.getSize() == 1) {
-            rsl = addCar(car);
-        } else if (car.getSize() > 1) {
-            rsl = addTrack(car);
-        }
-        return rsl;
-    }
-
-    private boolean addCar(Car car) {
-        boolean rsl = false;
-        if (car.getSize() <= placesCars && occupiedPlacesCars < placesCars) {
-            cars.add(car);
-            occupiedPlacesCars++;
-            rsl = true;
-        } else {
-            throw new IllegalArgumentException(
-                    "Нет свободных парковочных мест для легкового автомобиля");
-        }
-        return rsl;
-    }
-
-    private boolean addTrack(Car car) {
-        boolean rsl = false;
-        if (occupiedPlacesTracks < placesTracks) {
-            rsl = addTrackInParkingTrack(car);
-        } else if (car.getSize() <= placesCars && occupiedPlacesCars < placesCars) {
-            rsl = addTrackInParkingCar(car);
-        } else {
-            throw new IllegalArgumentException(
-                    "Нет свободных парковочных мест для грузового автомобиля"
-                           + "на местах грузовых и легковых автомобилей");
-        }
-        return rsl;
-    }
-
-    private boolean addTrackInParkingTrack(Car car) {
-        cars.add(car);
-        occupiedPlacesTracks++;
-        return true;
-    }
-
-    private boolean addTrackInParkingCar(Car car) {
-        for (int i = 0; i < car.getSize(); i++) {
-            if (occupiedPlacesCars < placesCars) {
-                cars.add(car);
-                occupiedPlacesCars++;
+        if (vehicle.getSize() == 1) {
+            if (placesCars > 0) {
+                cars.add(vehicle);
+                placesCars--;
+                rsl = true;
             } else {
-                throw new IllegalArgumentException(
-                        "Нет свободных парковочных мест для грузового автомобиля"
-                               + "на местах леговых автомобилей");
+                throw new IllegalArgumentException("Нет свободных парковочных мест");
             }
         }
-        return true;
+        if (vehicle.getSize() > 1) {
+            if (placesTracks > 0) {
+                cars.add(vehicle);
+                placesTracks--;
+                rsl = true;
+            } else if (vehicle.getSize() <= placesCars) {
+                if (placesCars > 0) {
+                    for (int i = 0; i < vehicle.getSize(); i++) {
+                        cars.add(vehicle);
+                    }
+                    placesCars -= vehicle.getSize();
+                    rsl = true;
+                }
+            } else {
+                throw new IllegalArgumentException("Нет свободных парковочных мест");
+            }
+        }
+        return rsl;
     }
 
-    public List<Car> findAll() {
-        return (List<Car>) ((ArrayList<Car>) this.cars).clone();
+    public List<Vehicle> findAll() {
+        return (List<Vehicle>) ((ArrayList<Vehicle>) this.cars).clone();
     }
 }

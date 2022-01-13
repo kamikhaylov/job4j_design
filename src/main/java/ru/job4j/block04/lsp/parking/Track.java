@@ -2,12 +2,13 @@ package ru.job4j.block04.lsp.parking;
 
 import java.util.Objects;
 
-public class Car implements Vehicle {
-    private static final int SIZE = 1;
+public class Track implements Vehicle {
     private String name;
+    private int size;
 
-    public Car(String name) {
+    public Track(String name, int size) {
         this.name = name;
+        this.size = size;
     }
 
     public String getName() {
@@ -16,7 +17,7 @@ public class Car implements Vehicle {
 
     @Override
     public int getSize() {
-        return SIZE;
+        return size;
     }
 
     @Override
@@ -27,12 +28,12 @@ public class Car implements Vehicle {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Car car = (Car) o;
-        return SIZE == car.SIZE && Objects.equals(name, car.name);
+        Track track = (Track) o;
+        return size == track.size && Objects.equals(name, track.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, SIZE);
+        return Objects.hash(name, size);
     }
 }
