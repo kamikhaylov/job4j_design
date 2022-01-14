@@ -17,14 +17,10 @@ public class ParkingCars implements Parking {
     @Override
     public boolean add(Vehicle vehicle) {
         boolean rsl = false;
-        if (vehicle.getSize() == 1) {
-            if (placesCars > 0) {
-                cars.add(vehicle);
-                placesCars--;
-                rsl = true;
-            } else {
-                throw new IllegalArgumentException("Нет свободных парковочных мест");
-            }
+        if (vehicle.getSize() == 1 && placesCars > 0) {
+            cars.add(vehicle);
+            placesCars--;
+            rsl = true;
         }
         if (vehicle.getSize() > 1) {
             if (placesTracks > 0) {
@@ -32,15 +28,11 @@ public class ParkingCars implements Parking {
                 placesTracks--;
                 rsl = true;
             } else if (vehicle.getSize() <= placesCars) {
-                if (placesCars > 0) {
-                    for (int i = 0; i < vehicle.getSize(); i++) {
-                        cars.add(vehicle);
-                    }
-                    placesCars -= vehicle.getSize();
-                    rsl = true;
+                for (int i = 0; i < vehicle.getSize(); i++) {
+                    cars.add(vehicle);
                 }
-            } else {
-                throw new IllegalArgumentException("Нет свободных парковочных мест");
+                placesCars -= vehicle.getSize();
+                rsl = true;
             }
         }
         return rsl;
