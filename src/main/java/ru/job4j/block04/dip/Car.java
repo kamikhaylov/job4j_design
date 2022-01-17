@@ -39,12 +39,15 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return speed == car.speed && Objects.equals(name, car.name) && Objects.equals(engine, car.engine);
+        return speed == car.speed
+                && Objects.equals(name, car.name)
+                && Objects.equals(engine, car.engine)
+                && Objects.equals(cars, car.cars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, engine, speed);
+        return Objects.hash(name, engine, speed, cars);
     }
 
     public void printSpecifications() {
