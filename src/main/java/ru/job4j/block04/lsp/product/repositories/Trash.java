@@ -21,7 +21,13 @@ public class Trash implements Repository {
         return getPercentLifeExpired(food) > 100;
     }
 
+    @Override
     public List<Food> findAll() {
         return (List<Food>) ((ArrayList<Food>) foods).clone();
+    }
+
+    @Override
+    public boolean remove(Food food) {
+        return foods.remove(food);
     }
 }

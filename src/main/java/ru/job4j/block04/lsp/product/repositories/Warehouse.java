@@ -21,7 +21,13 @@ public class Warehouse implements Repository {
         return getPercentLifeExpired(food) < 25;
     }
 
+    @Override
     public List<Food> findAll() {
         return (List<Food>) ((ArrayList<Food>) foods).clone();
+    }
+
+    @Override
+    public boolean remove(Food food) {
+        return foods.remove(food);
     }
 }

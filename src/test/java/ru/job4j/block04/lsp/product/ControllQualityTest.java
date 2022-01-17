@@ -136,4 +136,108 @@ public class ControllQualityTest {
         controllQuality.control(milk);
         assertThat(trash.findAll(), is(expected));
     }
+
+    @Test
+    public void thenResortShop() {
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
+        Calendar expiryDate = Calendar.getInstance();
+        Calendar createDate = Calendar.getInstance();
+        expiryDate.set(expiryDate.get(Calendar.YEAR),
+                expiryDate.get(Calendar.MONTH),
+                expiryDate.get(Calendar.DAY_OF_MONTH) + 5,
+                10, 0);
+        createDate.set(createDate.get(Calendar.YEAR),
+                createDate.get(Calendar.MONTH),
+                createDate.get(Calendar.DAY_OF_MONTH) - 5,
+                10, 0);
+        Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
+        List<Food> expected1 = List.of(milk);
+        controllQuality.control(milk);
+        controllQuality.resort();
+        assertThat(shop.findAll(), is(expected1));
+    }
+
+    @Test
+    public void thenResortWarehouse() {
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
+        Calendar expiryDate = Calendar.getInstance();
+        Calendar createDate = Calendar.getInstance();
+        expiryDate.set(expiryDate.get(Calendar.YEAR),
+                expiryDate.get(Calendar.MONTH),
+                expiryDate.get(Calendar.DAY_OF_MONTH) + 10,
+                10, 0);
+        createDate.set(createDate.get(Calendar.YEAR),
+                createDate.get(Calendar.MONTH),
+                createDate.get(Calendar.DAY_OF_MONTH) - 2,
+                10, 0);
+        Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
+        List<Food> expected = List.of(milk);
+        controllQuality.control(milk);
+        controllQuality.resort();
+        assertThat(warehouse.findAll(), is(expected));
+    }
+
+    @Test
+    public void thenResortShopAndDiscount() {
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
+        Calendar expiryDate = Calendar.getInstance();
+        Calendar createDate = Calendar.getInstance();
+        expiryDate.set(expiryDate.get(Calendar.YEAR),
+                expiryDate.get(Calendar.MONTH),
+                expiryDate.get(Calendar.DAY_OF_MONTH) + 2,
+                10, 0);
+        createDate.set(createDate.get(Calendar.YEAR),
+                createDate.get(Calendar.MONTH),
+                createDate.get(Calendar.DAY_OF_MONTH) - 10,
+                10, 0);
+        Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
+        List<Food> expected = List.of(milk);
+        controllQuality.control(milk);
+        controllQuality.resort();
+        assertThat(shop.findAll(), is(expected));
+    }
+
+    @Test
+    public void thenResortTrash() {
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        ControllQuality controllQuality = new ControllQuality(List.of(
+                shop,
+                warehouse,
+                trash));
+        Calendar expiryDate = Calendar.getInstance();
+        Calendar createDate = Calendar.getInstance();
+        expiryDate.set(expiryDate.get(Calendar.YEAR),
+                expiryDate.get(Calendar.MONTH),
+                expiryDate.get(Calendar.DAY_OF_MONTH) - 1,
+                10, 0);
+        createDate.set(createDate.get(Calendar.YEAR),
+                createDate.get(Calendar.MONTH),
+                createDate.get(Calendar.DAY_OF_MONTH) - 10,
+                10, 0);
+        Food milk = new Food("Milk", expiryDate, createDate, 100, 5);
+        List<Food> expected = List.of(milk);
+        controllQuality.control(milk);
+        controllQuality.resort();
+        assertThat(trash.findAll(), is(expected));
+    }
 }

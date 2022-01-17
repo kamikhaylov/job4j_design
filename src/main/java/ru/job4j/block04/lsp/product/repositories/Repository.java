@@ -2,6 +2,7 @@ package ru.job4j.block04.lsp.product.repositories;
 
 import ru.job4j.block04.lsp.product.Food;
 import java.util.Calendar;
+import java.util.List;
 
 public interface Repository {
     boolean add(Food food);
@@ -15,4 +16,8 @@ public interface Repository {
                 food.getExpiryDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis();
         return (double) currentProductLifeTime * 100 / maxProductLifeTime;
     }
+
+    List<Food> findAll();
+
+    boolean remove(Food food);
 }
