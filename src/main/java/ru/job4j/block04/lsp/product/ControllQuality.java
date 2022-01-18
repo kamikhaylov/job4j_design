@@ -22,10 +22,7 @@ public class ControllQuality {
         List<Food> foods = new ArrayList<>();
         for (Repository r : repository) {
             if (r.findAll().isEmpty()) {
-                for (Food food : r.findAll()) {
-                    foods.add(food);
-                    r.remove(food);
-                }
+                foods.addAll(r.remove());
             }
         }
         for (Food food : foods) {

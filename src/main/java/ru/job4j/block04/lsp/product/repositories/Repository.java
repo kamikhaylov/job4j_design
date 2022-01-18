@@ -19,5 +19,5 @@ public interface Repository {
 
     List<Food> findAll();
 
-    boolean remove(Food food);
+    List<Food> remove();
 }

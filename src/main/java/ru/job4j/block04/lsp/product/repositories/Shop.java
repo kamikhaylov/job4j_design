@@ -2,6 +2,7 @@ package ru.job4j.block04.lsp.product.repositories;
 
 import ru.job4j.block04.lsp.product.Food;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Shop implements Repository {
@@ -42,7 +43,10 @@ public class Shop implements Repository {
     }
 
     @Override
-    public boolean remove(Food food) {
-        return foods.remove(food);
+    public List<Food> remove() {
+        List<Food> copyFoods = new ArrayList<>();
+        copyFoods.addAll(foods);
+        foods.clear();
+        return copyFoods;
     }
 }

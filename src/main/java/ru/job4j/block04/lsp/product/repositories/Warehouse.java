@@ -27,7 +27,10 @@ public class Warehouse implements Repository {
     }
 
     @Override
-    public boolean remove(Food food) {
-        return foods.remove(food);
+    public List<Food> remove() {
+        List<Food> copyFoods = new ArrayList<>();
+        copyFoods.addAll(foods);
+        foods.clear();
+        return copyFoods;
     }
 }
