@@ -21,9 +21,7 @@ public class ControllQuality {
     public void resort() {
         List<Food> foods = new ArrayList<>();
         for (Repository r : repository) {
-            if (r.findAll().isEmpty()) {
-                foods.addAll(r.remove());
-            }
+            foods.addAll(r.remove());
         }
         for (Food food : foods) {
             control(food);

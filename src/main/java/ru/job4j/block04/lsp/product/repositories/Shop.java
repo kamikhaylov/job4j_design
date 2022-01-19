@@ -2,7 +2,6 @@ package ru.job4j.block04.lsp.product.repositories;
 
 import ru.job4j.block04.lsp.product.Food;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Shop implements Repository {
@@ -22,7 +21,7 @@ public class Shop implements Repository {
     public boolean accept(Food food) {
         boolean rsl = false;
         double percent = getPercentLifeExpired(food);
-        if (percent >= 25) {
+        if (percent >= 25 && percent <= 100) {
             this.food = food;
             rsl = true;
         }
