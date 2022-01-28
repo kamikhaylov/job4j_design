@@ -8,7 +8,7 @@ public class SimpleAction implements Action {
     }
 
     @Override
-    public void execute() {
-        System.out.println("Пример действия: " + name);
+    public String execute() {
+        return name;
     }
 }
